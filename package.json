@@ -1,0 +1,14 @@
+{
+  "name": "friends-included-finance",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "test": "node --test",
+    "check": "node --check api/index.js && node --check public/app.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

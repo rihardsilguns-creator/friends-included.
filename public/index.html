@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Friends Included transaction approvals and finance dashboard">
+  <title>Friends Included Finance</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brandmark">FI</span><div><strong>Friends Included</strong><small>Finance desk</small></div></div>
+    <label class="role"><span>Demonstration role</span><select id="roleSelect" aria-label="Demonstration role"></select></label>
+  </header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">Wedding operations</p><h1>Transactions, decisions and results</h1><p id="welcome">Choose an employee to begin.</p></div><div class="status-pair"><span id="storageBadge" class="badge">Checking data</span><button id="refresh" class="button secondary">Refresh</button></div></section>
+    <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+
+    <details class="help-panel">
+      <summary>How to use this system</summary>
+      <p>Choose a demonstration role. Salespeople enter sales, Kevin enters expenses, and Svetlana reviews pending records and confirms the final commission split or allocation. Saved records remain visible after refresh when Supabase is connected.</p>
+      <nav id="integrationLinks" aria-label="Project links"></nav>
+    </details>
+
+    <section id="dashboardSection" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Approved activity</p><h2>Financial dashboard</h2></div><div id="queueCounts" class="queue"></div></div>
+      <div id="dashboard" class="dashboard"></div>
+      <div class="commission-panel"><h3>Commission earned</h3><div id="commissions" class="commission-list"></div></div>
+    </section>
+
+    <section id="entrySection" class="workspace" hidden>
+      <div class="section-heading"><div><p class="eyebrow">New record</p><h2 id="entryTitle">Enter a transaction</h2></div></div>
+      <form id="saleForm" class="form-grid" hidden>
+        <label>Reference<input name="reference" required placeholder="S01"></label><label>Customer<input name="customer" required></label>
+        <label>Project<select name="project"><option>A</option><option>B</option></select></label><label>Amount EUR<input name="amount" type="number" min="0.01" step="0.01" required></label>
+        <label class="span-2">Description<input name="description" required></label>
+        <fieldset class="span-2"><legend>Proposed commission split</legend><div class="triple"><label>Richard %<input name="richard" type="number" min="0" max="100" value="34" required></label><label>Anastasia %<input name="anastasia" type="number" min="0" max="100" value="33" required></label><label>Jean-Claude %<input name="jeanClaude" type="number" min="0" max="100" value="33" required></label></div></fieldset>
+        <button class="button primary span-2">Save sale</button>
+      </form>
+      <form id="expenseForm" class="form-grid" hidden>
+        <label>Reference<input name="reference" required placeholder="E01"></label><label>Amount EUR<input name="amount" type="number" min="0.01" step="0.01" required></label>
+        <label>Category<select name="category"><option>Materials</option><option>Travel</option><option>Other</option></select></label><label>Proposed allocation<select name="proposedAllocation"><option value="A">Project A</option><option value="B">Project B</option><option>Company overhead</option></select></label>
+        <label class="span-2">Description<input name="description" required></label><button class="button primary span-2">Save expense</button>
+      </form>
+    </section>
+
+    <section id="managerSection" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Manager controls</p><h2>Telegram setup</h2></div><p>Link a user ID to an employee. Changing the link never changes an existing record’s notification destination.</p></div>
+      <form id="linkForm" class="link-form"><label>Employee<select name="employeeId" id="linkEmployee"></select></label><label>Telegram user ID<input name="userId" required inputmode="numeric"></label><label>Chat ID<input name="chatId" inputmode="numeric" placeholder="Defaults to user ID"></label><button class="button primary">Save link</button></form>
+      <div id="linkList" class="link-list"></div>
+    </section>
+
+    <section class="records">
+      <div class="section-heading"><div><p class="eyebrow">Source records</p><h2>Sales</h2></div></div><div id="salesTable" class="table-wrap"></div>
+      <div class="section-heading expenses-heading"><div><p class="eyebrow">Paid expenses</p><h2>Expenses</h2></div></div><div id="expensesTable" class="table-wrap"></div>
+    </section>
+  </main>
+  <footer><span id="studentName"></span><span>All people and transactions are fictional.</span></footer>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
